@@ -46,14 +46,18 @@ root  = Builder.load_string("""
 					md_bg_color:[0, 0, 0, 1]
 					radius:[30, 0, 30, 0]
 					orientation:"vertical"
-					MDIconButton:
-						size_hint:None, None
-						size:"100dp", "100dp"
-						user_font_size:"100dp"
-						theme_text_color:"Custom"
-						text_color:[1, 1, 1, 1]
-						pos_hint:{"center_x":.5, "center_y":.5}
-						icon:"file-lock"
+					MDBoxLayout:
+						Widget:
+						MDIconButton:
+							size_hint:None, None
+							size:"100dp", "100dp"
+							icon_size:"50dp"
+							user_font_size:"100dp"
+							theme_text_color:"Custom"
+							text_color:[1, 1, 1, 1]
+							icon:"file-lock"
+							pos_hint:{"center_x":.5, "center_y":.5}
+						Widget:
 					MDBoxLayout:
 						size_hint_y:None
 						height:"50dp"
