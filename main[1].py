@@ -33,6 +33,17 @@ root  = Builder.load_string("""
 					radius:[30, 0, 30, 0]
 					orientation:"vertical"
 					MDBoxLayout:
+						Widget:
+						MDIconButton:
+							size_hint:None, None
+							size:"100dp", "100dp"
+							icon_size:"50dp"
+							user_font_size:"100dp"
+							theme_text_color:"Custom"
+							text_color:[1, 1, 1, 1]
+							icon:"file-replace"
+							pos_hint:{"center_x":.5, "center_y":.5}
+						Widget:
 					MDBoxLayout:
 						size_hint_y:None
 						height:"50dp"
@@ -72,6 +83,19 @@ root  = Builder.load_string("""
 				MDBoxLayout:
 					md_bg_color:[0, 0, 0, 1]
 					radius:[30, 0, 30, 0]
+					orientation:"vertical"
+					MDBoxLayout:
+						Widget:
+						MDIconButton:
+							size_hint:None, None
+							size:"100dp", "100dp"
+							icon_size:"50dp"
+							user_font_size:"100dp"
+							theme_text_color:"Custom"
+							text_color:[1, 1, 1, 1]
+							icon:"file-rotate-left"
+							pos_hint:{"center_x":.5, "center_y":.5}
+						Widget:
 					MDBoxLayout:
 						size_hint_y:None
 						height:"50dp"
@@ -84,6 +108,19 @@ root  = Builder.load_string("""
 				MDBoxLayout:
 					md_bg_color:[0, 0, 0, 1]
 					radius:[30, 0, 30, 0]
+					orientation:"vertical"
+					MDBoxLayout:
+						Widget:
+						MDIconButton:
+							size_hint:None, None
+							size:"100dp", "100dp"
+							icon_size:"50dp"
+							user_font_size:"100dp"
+							theme_text_color:"Custom"
+							text_color:[1, 1, 1, 1]
+							icon:"file-sync"
+							pos_hint:{"center_x":.5, "center_y":.5}
+						Widget:
 					MDBoxLayout:
 						size_hint_y:None
 						height:"50dp"
