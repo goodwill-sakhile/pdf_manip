@@ -3,6 +3,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.screen import MDScreen
 from kivy.lang import Builder
+
 root = Builder.load_string("""
 <BoxDoubleButton>:
 	id:box_double_button
