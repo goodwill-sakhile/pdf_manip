@@ -1,55 +1,18 @@
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, SlideTransition
 from kivymd.uix.screen import MDScreen
+from touch import TouchBox
+from file_manager import SelectFileScreen
 from kivy.lang import Builder
-
 root = Builder.load_string("""
-<BoxDoubleButton>:
-	id:box_double_button
-	icon:"merge"
-	padding:"15dp", "10dp"
-	spacing:15
-	size_hint:None, None
-	size:"200dp", "200dp"
-	radius:[30, 30, 30, 30]
-	md_bg_color:[0, 220/float(255), 154/float(255), 1]
-	orientation:"vertical"
-	MDBoxLayout:
-		md_bg_color:[220/float(255), 220/float(255), 220/float(255), 1]
-		radius: [60, 60, 60, 60]
-		Widget:
-		MDIconButton:
-			root:box_double_button
-			icon:"file-image"
-			size_hint:None, None
-			size:"70dp", "70dp"
-			icon_size:"35dp"
-			pos_hint:{"center_x":.5, "center_y":.5}
-			theme_text_color:"Custom"
-			text_color:[0, 0, 0,  1]
-		Widget:
-	MDBoxLayout:
-		md_bg_color:[220/float(255), 220/float(255), 220/float(255), 1]
-		radius: [60, 60, 60, 60]
-		Widget:
-		MDIconButton:
-			root:box_double_button
-			icon:"file-pdf-box"
-			size_hint:None, None
-			size:"70dp", "70dp"
-			icon_size:"35dp"
-			pos_hint:{"center_x":.5, "center_y":.5}
-			theme_text_color:"Custom"
-			text_color:[0, 0, 0,  1]
-		Widget:
 <BoxButton>:
 	id:box_button
 	icon:"merge"
 	text:"merge"
 	orientation:"vertical"
 	size_hint:None, None
-	size:"200dp", "200dp"
+	size:"190dp", "190dp"
 	radius:[30, 30, 30, 30]
 	md_bg_color:[0, 220/float(255), 154/float(255), 1]
 	MDBoxLayout:
@@ -76,6 +39,7 @@ root = Builder.load_string("""
 			valign:"middle"
 			font_size:"18dp"
 <HomeScreen>:
+	id:home_screen
 	name:"home_screen"
 	MDBoxLayout:
 		orientation:"vertical"
@@ -99,15 +63,22 @@ root = Builder.load_string("""
 					#md_bg_color:[0, 0, 0, 1]
 					MDGridLayout:
 						spacing:10
+						padding:10
 						rows:2
 						cols:2
 						BoxButton:
+							root:home_screen
 							text:"merge"
 						BoxButton:
+							root:home_screen
 							icon:"call-split"
 							text:"split"
-						BoxDoubleButton:
+						#BoxDoubleButton:
 						BoxButton:
+							icon:"file-image"
+							text:"pdf to image"
+						BoxButton:
+							root:home_screen
 							text:"compress"
 							icon:"table-merge-cells"
 				Widget:
@@ -115,10 +86,14 @@ root = Builder.load_string("""
 			
 			
 """)
-class BoxDoubleButton(MDBoxLayout):
-	pass
-class BoxButton(MDBoxLayout):
-	pass
+class BoxDoubleButton(TouchBox):
+	def respondToTouch(self):
+		self.root.parent.transition = SlideTransition(direction = "left")
+		self.root.parent.current = "select_file_screen"
+class BoxButton(TouchBox):
+	def respondToTouch(self):
+		self.root.parent.transition = SlideTransition(direction = "left")
+		self.root.parent.current = "select_file_screen"
 class HomeScreen(MDScreen):
 	pass
 class MainScreenManager(ScreenManager):
@@ -127,7 +102,9 @@ class MainApp(MDApp):
 	def build(self):
 		screen_manager = ScreenManager()
 		home_screen = HomeScreen()
+		select_file_screen = SelectFileScreen()
 		screen_manager.add_widget(home_screen)
+		screen_manager.add_widget(select_file_screen)
 		return screen_manager
 if __name__ == "__main__":
 	MainApp().run()
